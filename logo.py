@@ -16,8 +16,9 @@ WHITE = (255, 255, 255)
 GREEN = (0, 255, 0)
 RED = (255, 0, 0)
 BEETSRED = (181, 16, 32)
-PURP = (58, 32, 79)
-LIGHTPURP = (93, 52, 124)
+PURP = (49, 7, 122)
+LIGHTPURP = (79, 55, 122)
+YELLOW = (242,161,0)
 
 # Set the screen size (please don't change this)
 SCREENWIDTH = 400
@@ -52,13 +53,14 @@ while carryOn:
 
     # Queue different shapes and lines to be drawn
     #i am drawing the eclipse logo
+    pygame.draw.ellipse(screen,YELLOW,[2,0,400,400])#this is the arc 
+    pygame.draw.ellipse(screen,WHITE,[30,0,400,400])#this circle is used to create the arc in the logo
     pygame.draw.ellipse(screen,PURP,[40,30,340,340])#this is the body circle
     pygame.draw.ellipse(screen,LIGHTPURP,[110,105,200,200])#mid light purple circle
     pygame.draw.rect(screen,PURP,[110,105, 200,100])#blocks half the light purple
-    pygame.draw.rect(screen,WHITE,[0,150,400,20])#white line #1
-    pygame.draw.rect(screen,WHITE,[0,190,400,20])#white line #2
-    pygame.draw.rect(screen,WHITE,[0,230,400,20])#white line #3
-    pygame.draw.arc(screen,GREEN,[5,200,100,100],math.radians(90),math.radians(270))
+    pygame.draw.rect(screen,WHITE,[39,150,400,20])#white line #1
+    pygame.draw.rect(screen,WHITE,[39,190,400,20])#white line #2
+    pygame.draw.rect(screen,WHITE,[39,230,400,20])#white line #3
     
 
     # Update the screen with queued shapes
