@@ -16,9 +16,9 @@ WHITE = (255, 255, 255)
 GREEN = (0, 255, 0)
 RED = (255, 0, 0)
 BEETSRED = (181, 16, 32)
-PURP = (49, 7, 122)
-LIGHTPURP = (79, 55, 122)
-YELLOW = (242,161,0)
+PURP = (49, 7, 122)#this purple is the colour of the main body of the logo
+LIGHTPURP = (79, 55, 122)#this is used to colour in the small faded circle
+YELLOW = (242,161,0)#this is the colour of the ark
 
 # Set the screen size (please don't change this)
 SCREENWIDTH = 400
