@@ -28,7 +28,7 @@ SCREENHEIGHT = 400
 # The window is defined as (width, height), measured in pixels
 size = (SCREENWIDTH, SCREENHEIGHT)
 screen = pygame.display.set_mode(size)
-pygame.display.set_caption("Eclips logo")
+pygame.display.set_caption("Eclipse logo")
 
 # This loop will continue until the user exits the game
 carryOn = True
