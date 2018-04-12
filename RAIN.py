@@ -6,7 +6,7 @@ WHITE = (255,255,255)
 class RAIN(pygame.sprite.Sprite):
 
 
-   def __init__ (self,  color, width = 2, height = 2, x = random.randint(2,398)):
+   def __init__ (self,  color = RainBlue, width = 2, height = 2, x = random.randint(2,398)):
        super().__init__()
 
 
@@ -17,7 +17,7 @@ class RAIN(pygame.sprite.Sprite):
 
        pygame.draw.ellipse(self.image,color,[x,0,width,height])
 
-       sefl.ellipse = self.image.get_ellipse()
+       self.ellipse = self.image.get_ellipse()
        
 
     
