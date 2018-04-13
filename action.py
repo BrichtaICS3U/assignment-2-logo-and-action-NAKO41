@@ -4,10 +4,24 @@
 
 # adapted from http://www.101computing.net/getting-started-with-pygame/
 
+
+
+
 # Import the pygame library and initialise the game engine
 # Don't forget to import your class
-import pygame
+import pygame, random
 pygame.init()
+from RAIN import Rain
+
+
+
+
+
+#this will be the png or jpg background
+background = pygame.image.load('clouds.jpg')#this is the background
+
+
+
 
 # Define some colours
 # Colours are defined using RGB values
@@ -15,7 +29,7 @@ BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 GREEN = (0, 255, 0)
 RED = (255, 0, 0)
-
+RAINBLUE = (3, 74, 236)
 # Set the screen size
 SCREENWIDTH = 400
 SCREENHEIGHT = 400
@@ -32,6 +46,17 @@ carryOn = True
 # The clock will be used to control how fast the screen updates
 clock = pygame.time.Clock()
 
+#this will be the code that creates the rain and places them in a list
+rain_drops = pygame.sprite.Group()
+
+for i in range(1000):
+    rain = Rain(RAINBLUE,2,3)
+    rain.rect.x = random.randint(2,398)
+    rain.rect.y = random.randint(0,350)
+
+    rain_drops.add(rain)#this adds every drop to the rainstorm
+    
+
 #---------Main Program Loop----------
 while carryOn:
     # --- Main event loop ---
@@ -40,17 +65,26 @@ while carryOn:
             carryOn = False
 
     # --- Game logic goes here
-    # There should be none for a static image
+    rain_drops.update()
+
+    for rain in rain_drops:#this code makes the rain move and reset after it's hit the ground
+        rain.fall(random.randint(5,10))
+        if rain.rect.y > SCREENHEIGHT:#this rests the rain to the top
+            rain.rect.y = 0
     
     # --- Draw code goes here
 
     # Clear the screen to white
     screen.fill(WHITE)
+    screen.blit(background,(0,0))
 
     # Queue different shapes and lines to be drawn
-    # pygame.draw.rect(screen, RED, [55, 200, 100, 70], 0)
-    # pygame.draw.line(screen, GREEN, [0, 0], [100, 100], 5)
-    # pygame.draw.ellipse(screen, BLACK, [20, 20, 250, 100], 2)
+
+
+
+
+    #draw the sprites
+    rain_drops.draw(screen)
 
     # Update the screen with queued shapes
     pygame.display.flip()

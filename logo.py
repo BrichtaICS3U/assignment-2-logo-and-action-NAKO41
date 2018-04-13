@@ -53,7 +53,7 @@ while carryOn:
 
     # Queue different shapes and lines to be drawn
     #i am drawing the eclipse logo
-    pygame.draw.ellipse(screen,YELLOW,[2,10,400,380])#this is the arc 
+    pygame.draw.ellipse(screen,YELLOW,[2,10,400,380])#this is the yellow arc 
     pygame.draw.ellipse(screen,WHITE,[30,0,400,400])#this circle is used to create the arc in the logo
     pygame.draw.ellipse(screen,PURP,[40,30,340,340])#this is the body circle
     pygame.draw.ellipse(screen,LIGHTPURP,[110,105,200,200])#mid light purple circle
