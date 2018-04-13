@@ -1,6 +1,7 @@
 # ICS3U
 # Assignment 2: Action
-# <your name>
+# <Nihcolas Sprott>
+#!!there are times that the framerate of the code drops!!
 
 # adapted from http://www.101computing.net/getting-started-with-pygame/
 
@@ -15,12 +16,18 @@ from RAIN import Rain
 from CAR import Car
 
 
-
-
-
 #this will be the png or jpg background
+#https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_anRxwzGcZkKIBu7Z8ic-PZiSL-ArAGqXinrhqgq9LnOmr5j4
 background = pygame.image.load('clouds.jpg')#this is the background
 
+
+#this is where the sounds are inserted
+
+#rain noises
+#https://www.soundjay.com/rain-sound-effect.html 
+pygame. mixer.pre_init(frequency = 44100, size =-16, channels = 1, buffer = 1000)
+pygame.mixer.music.load('Rain.mp3')
+pygame.mixer.music.play(-1)#-1 will loop the song, 0 will play once
 
 
 
@@ -30,9 +37,18 @@ BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 GREEN = (0, 255, 0)
 RED = (255, 0, 0)
+BLUE = (0,0,255)
 RAINBLUE = (3, 74, 236)
 GREY = (37,37,37)
+GREEN = (0,255,0)
+YELLOW = (255,255,0)
+PINK = (255,114,255)
+ORANGE = (255,100,0)
+TURQUOISE = (0,255,255)
 
+
+#list of the diffirent kinds of colours that the cars will change into
+colorList = [BLUE,RED,GREEN,YELLOW,PINK,ORANGE,TURQUOISE]
 
 # Set the screen size
 SCREENWIDTH = 400
@@ -63,27 +79,53 @@ for i in range(1000):
 #this code will create the car list and import a car in it
 cars = pygame.sprite.Group()
 
-car = Car(RED)
-car.rect.x = 0
-car.rect.y = 365
+car1 = Car(RED,)#this will be the car closer to the screen
+car1.rect.x = 0
+car1.rect.y = 365
 
-cars.add(car)
+car2 = Car(BLUE,)#this will be the farther car
+car2.rect.x = 340
+car2.rect.y = 350
 
+cars.add(car2)
+cars.add(car1)
 
+#how fast each car will initialy go in the start
+speed1 = 5
+speed2 = 4
 #---------Main Program Loop----------
 while carryOn:
     # --- Main event loop ---
     for event in pygame.event.get(): # Player did something
         if event.type == pygame.QUIT: # Player clicked close button
             carryOn = False
+        elif event.type==pygame.KEYDOWN:#this bit of code allows the user
+            if event.key==pygame.K_SPACE:#to close the game with the space bar
+                carryOn = False
 
     # --- Game logic goes here
     rain_drops.update()
+    cars.update()
 
     for rain in rain_drops:#this code makes the rain move and reset after it's hit the ground
         rain.fall(random.randint(5,10))
         if rain.rect.y > 400:#this rests the rain to the top
             rain.rect.y = 0
+
+    #cars logic
+    car1.moveRight(speed1)
+    car2.moveLeft(speed2)
+
+    if car1.rect.x > 400:#this will change car 1 when it reaches the edge of the screen
+        speed1 = random.randint(4,6)
+        car1.rect.x = -60
+        car1.changeColor(random.choice(colorList))
+
+    if car2.rect.x < -60:#this will change car 1 when it reaces the edge of the screen
+        speed2 = random.randint(4,6)
+        car2.rect.x = 420
+        car2.changeColor(random.choice(colorList))
+        
     
     # --- Draw code goes here
 
@@ -95,12 +137,28 @@ while carryOn:
    
 
     # Queue different shapes and lines to be drawn
-    pygame.draw.rect(screen,GREY,[0,370,400,30])
+    pygame.draw.rect(screen,GREY,[0,370,400,30])#this is the road
+    pygame.draw.line(screen,YELLOW,[10,385],[30,385],4)#1 seperator line
+    pygame.draw.line(screen,YELLOW,[40,385],[60,385],4)#2 seperator line
+    pygame.draw.line(screen,YELLOW,[70,385],[90,385],4)#3 seperator line
+    pygame.draw.line(screen,YELLOW,[100,385],[120,385],4)#4 seperator line
+    pygame.draw.line(screen,YELLOW,[130,385],[150,385],4)#5 seperator line
+    pygame.draw.line(screen,YELLOW,[160,385],[180,385],4)#6 seperator line
+    pygame.draw.line(screen,YELLOW,[190,385],[210,385],4)#7 seperator line
+    pygame.draw.line(screen,YELLOW,[220,385],[240,385],4)#8 seperator line
+    pygame.draw.line(screen,YELLOW,[250,385],[270,385],4)#9 seperator line
+    pygame.draw.line(screen,YELLOW,[280,385],[300,385],4)#10 seperator line
+    pygame.draw.line(screen,YELLOW,[310,385],[330,385],4)#11 seperator line
+    pygame.draw.line(screen,YELLOW,[340,385],[360,385],4)#12 seperator line
+    pygame.draw.line(screen,YELLOW,[370,385],[390,385],4)#13 seperator line
+
+   
 
 
     #draw the sprites
-    cars.draw(screen)
-    rain_drops.draw(screen)
+    cars.draw(screen)#draws the cars in the class
+    rain_drops.draw(screen)#draws the rain
+    
     
     
 

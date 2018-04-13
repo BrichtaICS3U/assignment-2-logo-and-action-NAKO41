@@ -24,6 +24,21 @@ class Car(pygame.sprite.Sprite):
 
 
         self.rect = self.image.get_rect()
+
+
+
+    def moveRight(self,pixels):
+        self.rect.x += pixels
+
+    def moveLeft(self,pixels):
+        self.rect.x -= pixels
+
+    def changeColor(self,color):
+        self.color = color
+        pygame.draw.rect(self.image,self.color,[15,0,30,10])
+        pygame.draw.rect(self.image,self.color,[0,10,60,20])
+        pygame.draw.ellipse(self.image,(0,0,0),[10,25,10,10])
+        pygame.draw.ellipse(self.image,(0,0,0),[40,25,10,10])
         
 
 
