@@ -12,6 +12,7 @@
 import pygame, random
 pygame.init()
 from RAIN import Rain
+from CAR import Car
 
 
 
@@ -30,6 +31,9 @@ WHITE = (255, 255, 255)
 GREEN = (0, 255, 0)
 RED = (255, 0, 0)
 RAINBLUE = (3, 74, 236)
+GREY = (37,37,37)
+
+
 # Set the screen size
 SCREENWIDTH = 400
 SCREENHEIGHT = 400
@@ -56,6 +60,15 @@ for i in range(1000):
 
     rain_drops.add(rain)#this adds every drop to the rainstorm
     
+#this code will create the car list and import a car in it
+cars = pygame.sprite.Group()
+
+car = Car(RED)
+car.rect.x = 0
+car.rect.y = 365
+
+cars.add(car)
+
 
 #---------Main Program Loop----------
 while carryOn:
@@ -69,7 +82,7 @@ while carryOn:
 
     for rain in rain_drops:#this code makes the rain move and reset after it's hit the ground
         rain.fall(random.randint(5,10))
-        if rain.rect.y > SCREENHEIGHT:#this rests the rain to the top
+        if rain.rect.y > 400:#this rests the rain to the top
             rain.rect.y = 0
     
     # --- Draw code goes here
@@ -78,13 +91,18 @@ while carryOn:
     screen.fill(WHITE)
     screen.blit(background,(0,0))
 
+
+   
+
     # Queue different shapes and lines to be drawn
-
-
+    pygame.draw.rect(screen,GREY,[0,370,400,30])
 
 
     #draw the sprites
+    cars.draw(screen)
     rain_drops.draw(screen)
+    
+    
 
     # Update the screen with queued shapes
     pygame.display.flip()
