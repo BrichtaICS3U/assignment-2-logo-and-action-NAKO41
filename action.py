@@ -12,8 +12,8 @@
 # Don't forget to import your class
 import pygame, random
 pygame.init()
-from RAIN import Rain
-from CAR import Car
+from RAIN import Rain  #imports the rain class
+from CAR import Car    #imports the car class
 
 
 #this will be the png or jpg background
@@ -93,6 +93,8 @@ cars.add(car1)
 #how fast each car will initialy go in the start
 speed1 = 5
 speed2 = 4
+
+
 #---------Main Program Loop----------
 while carryOn:
     # --- Main event loop ---
@@ -121,7 +123,7 @@ while carryOn:
         car1.rect.x = -60
         car1.changeColor(random.choice(colorList))
 
-    if car2.rect.x < -60:#this will change car 1 when it reaces the edge of the screen
+    if car2.rect.x < -60:#this will change car 2 when it reaces the edge of the screen
         speed2 = random.randint(4,6)
         car2.rect.x = 420
         car2.changeColor(random.choice(colorList))
@@ -131,7 +133,7 @@ while carryOn:
 
     # Clear the screen to white
     screen.fill(WHITE)
-    screen.blit(background,(0,0))
+    screen.blit(background,(0,0))#jpg of clouds
 
 
    

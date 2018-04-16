@@ -15,12 +15,12 @@ class Rain(pygame.sprite.Sprite):
       self.width = width
       self.height = height
 
-      pygame.draw.rect(self.image,color,[0,0,width,height])
+      pygame.draw.rect(self.image,color,[0,0,width,height])#small rectangle that represents the water
 
       self.rect = self.image.get_rect()
 
 
-   def fall(self,pixels):
+   def fall(self,pixels):#this makes the rain fall
        self.rect.y += pixels
 
 
